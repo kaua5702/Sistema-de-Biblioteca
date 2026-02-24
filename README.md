@@ -26,16 +26,22 @@ Este projeto foi criado para fins de aprendizado e pode ser expandido para se to
 Menu interativo:
 ===== MENU BIBLIOTECA =====
 1 - Cadastrar Aluno
+
 2 - Cadastrar Livro
+
 3 - Emprestar Livro
+
 4 - Devolver Livro
+
 5 - Listar Livros Disponíveis
+
 0 - Sair
+
 Escolha uma opção:
 
 ---
 
-Fluxo:
+## Fluxo:
 - Cadastrar aluno → "Usuário inserido com sucesso!"
 - Cadastrar livro → "📚 Livro cadastrado com sucesso!"
 - Emprestar livro → "📖 O livro 'O Hobbit' foi emprestado para Kauã."
