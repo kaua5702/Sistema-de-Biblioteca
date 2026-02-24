@@ -24,7 +24,9 @@ Este projeto foi criado para fins de aprendizado e pode ser expandido para se to
 
 ## 📖 Exemplo de uso
 Menu interativo:
+
 ===== MENU BIBLIOTECA =====
+
 1 - Cadastrar Aluno
 
 2 - Cadastrar Livro
