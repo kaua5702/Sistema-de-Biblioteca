@@ -46,4 +46,7 @@ public class Livro {
         return autor;
     }
 
+    public int getId() {
+        return id;
+    }
 }
