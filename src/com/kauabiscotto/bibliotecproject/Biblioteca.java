@@ -1,45 +1,49 @@
 package com.kauabiscotto.bibliotecproject;
 
-import java.util.ArrayList;
+import com.kauabiscotto.bibliotecproject.dao.EmprestimoDAO;
+import com.kauabiscotto.bibliotecproject.dao.LivroDAO;
+import com.kauabiscotto.bibliotecproject.dao.PessoaDAO;
+
 import java.util.List;
-import java.util.Scanner;
 
 public class Biblioteca {
 
-    private List<Pessoa> pessoas = new ArrayList<>();
-    private List<Livro> livros = new ArrayList<>();
+    private LivroDAO livroDAO = new LivroDAO();
+    private PessoaDAO pessoaDAO = new PessoaDAO();
+    private EmprestimoDAO emprestimoDAO = new EmprestimoDAO();
 
-    public void adiconarPessoa(Pessoa pessoa) {
-        pessoas.add(pessoa);
-        System.out.println("Usuário inserido com sucesso!");
+    public void adiconarPessoa(Pessoa pessoa) throws Exception {
+        pessoaDAO.adicionar(pessoa);
     }
 
-    public void adicionarLivro(Livro livro) {
-        livros.add(livro);
+    public void adicionarLivro(Livro livro) throws Exception {
+        livroDAO.inserir(livro);
     }
 
-    public void emprestarLivro(Pessoa pessoa, Livro livro) {
-        if (livro.isEmprestado() == false) {
+    public void emprestarLivro(Pessoa pessoa, Livro livro) throws Exception {
+        if (!livro.isEmprestado()) {
             livro.emprestar();
+            livroDAO.atualizar(livro);
+            emprestimoDAO.registrarEmprestimo(pessoa, livro);
             System.out.println("Livro emprestado com sucesso!");
-
         } else {
-            System.out.println("O livro não está disponível");
+            System.out.println("O livro não está disponível.");
         }
     }
 
-    public void devolverLivro(Pessoa pessoa, Livro livro) {
-        if (livro.isEmprestado() == true) {
+    public void devolverLivro(Pessoa pessoa, Livro livro) throws Exception {
+        if (livro.isEmprestado()) {
             livro.devolver();
+            livroDAO.atualizar(livro);
+            emprestimoDAO.registrarDevolucao(livro);
             System.out.println("Livro devolvido com sucesso!");
-
         } else {
             System.out.println("Este livro não foi emprestado!");
         }
-
     }
 
-    public void listarLivros() {
+    public void listarLivros() throws Exception {
+        List<Livro> livros = livroDAO.listarTodos();
         boolean encontrou = false;
         for (Livro livro : livros) {
             if (!livro.isEmprestado()) {
@@ -54,16 +58,18 @@ public class Biblioteca {
         }
     }
 
-    public Livro buscarLivroPorTitulo(String titulo) {
+    public Livro buscarLivroPorTitulo(String titulo) throws Exception {
+        List<Livro> livros = livroDAO.listarTodos();
         for (Livro livro : livros) {
-            if (livro.getTitulo().equalsIgnoreCase(titulo)){
+            if (livro.getTitulo().equalsIgnoreCase(titulo)) {
                 return livro;
             }
         }
         return null;
     }
 
-    public Pessoa buscarPessoaPorNome(String nome) {
+    public Pessoa buscarPessoaPorNome(String nome) throws Exception {
+        List<Pessoa> pessoas = pessoaDAO.selecionarTudo();
         for (Pessoa pessoa : pessoas) {
             if (pessoa.getNome().equalsIgnoreCase(nome)) {
                 return pessoa;
@@ -71,6 +77,4 @@ public class Biblioteca {
         }
         return null;
     }
-
-
 }

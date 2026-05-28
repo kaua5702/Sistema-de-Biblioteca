@@ -114,7 +114,7 @@ public class PessoaDAO {
                     conn.close();
                 }
 
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
