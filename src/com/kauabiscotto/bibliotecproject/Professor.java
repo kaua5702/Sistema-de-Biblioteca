@@ -17,6 +17,10 @@ public class Professor extends Pessoa {
         this.livrosEmprestados = 0;
     }
 
+    public String getDisciplina() {
+        return disciplina;
+    }
+
     @Override
     public void exibirPerfil() {
         System.out.println("Professor: " + getNome() + ", Idade: " + getIdade() + ", Disciplina: " + disciplina);
