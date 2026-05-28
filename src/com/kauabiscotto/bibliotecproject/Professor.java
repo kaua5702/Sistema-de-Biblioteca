@@ -11,6 +11,12 @@ public class Professor extends Pessoa {
         this.livrosEmprestados = 0;
     }
 
+    public Professor(int id, String nome, int idade, String disciplina) {
+        super(id, nome, idade);
+        this.disciplina = disciplina;
+        this.livrosEmprestados = 0;
+    }
+
     @Override
     public void exibirPerfil() {
         System.out.println("Professor: " + getNome() + ", Idade: " + getIdade() + ", Disciplina: " + disciplina);

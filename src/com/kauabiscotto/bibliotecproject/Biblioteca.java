@@ -11,7 +11,7 @@ public class Biblioteca {
 
     public void adiconarPessoa(Pessoa pessoa) {
         pessoas.add(pessoa);
-        System.out.println("Usuário unserido com sucesso!");
+        System.out.println("Usuário inserido com sucesso!");
     }
 
     public void adicionarLivro(Livro livro) {

@@ -5,6 +5,7 @@ public class Livro {
     private String titulo;
     private String autor;
     private int ano;
+    private int id;
     private boolean emprestado = false;
 
     public Livro(String titulo, String autor, int ano) {
@@ -12,7 +13,13 @@ public class Livro {
         this.titulo = titulo;
         this.autor = autor;
         this.ano = ano;
+    }
 
+    public Livro(int id, String titulo, String autor, int ano) {
+        this.id = id;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.ano = ano;
     }
 
     public boolean isEmprestado() {

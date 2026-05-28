@@ -7,8 +7,13 @@ public class Aluno extends Pessoa {
     public Aluno(String nome, int idade) {
         super(nome, idade);
         this.livrosEmprestados = 0;
-
     }
+
+    public Aluno(int id, String nome, int idade) {
+        super(id, nome, idade);
+        this.livrosEmprestados = 0;
+    }
+
     @Override
     public void exibirPerfil() {
         System.out.println("Aluno: " + getNome() + ", Idade: " + getIdade());
