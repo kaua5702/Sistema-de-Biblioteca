@@ -6,18 +6,17 @@ public abstract class Pessoa {
     private String nome;
     private int idade;
     private int id;
-    private int tipo;
+    private String tipo;
 
     public Pessoa(String nome, int idade) {
         this.nome = nome;
         this.idade = idade;
     }
 
-    public Pessoa(int id, String nome, int idade,  int tipo) {
+    public Pessoa(int id, String nome, int idade) {
         this.id = id;
         this.nome = nome;
         this.idade = idade;
-        this.tipo = tipo;
     }
 
     public int getId() {
@@ -32,7 +31,7 @@ public abstract class Pessoa {
         return idade;
     }
 
-    public int getTipo() {
+    public String getTipo() {
         return tipo;
     }
 

@@ -59,13 +59,7 @@ public class Biblioteca {
     }
 
     public Livro buscarLivroPorTitulo(String titulo) throws Exception {
-        List<Livro> livros = livroDAO.listarTodos();
-        for (Livro livro : livros) {
-            if (livro.getTitulo().equalsIgnoreCase(titulo)) {
-                return livro;
-            }
-        }
-        return null;
+        return livroDAO.buscarPorTitulo(titulo);
     }
 
     public Pessoa buscarPessoaPorNome(String nome) throws Exception {

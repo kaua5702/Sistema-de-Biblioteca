@@ -92,9 +92,51 @@ public class LivroDAO {
         }
     }
 
+    public Livro buscarPorTitulo(String titulo) {
+
+        String sql = "SELECT * FROM livros WHERE titulo = ?";
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+
+        try {
+            conn = ConnectionFactory.createConnectionToMySQL();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, titulo);
+            rset = pstmt.executeQuery();
+
+            if (rset.next()) {
+                Livro livro = new Livro(
+                        rset.getInt("id"),
+                        rset.getString("titulo"),
+                        rset.getString("autor"),
+                        rset.getInt("ano")
+                );
+                if (rset.getBoolean("emprestado")) {
+                    livro.emprestar();
+                }
+                return livro;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if (rset != null) rset.close();
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
     public List<Livro> listarTodos() {
 
-        String sql = "SELECT * FROM livros";
+        String sql = "SELECT * FROM livros WHERE emprestado = false";
 
         List<Livro> livros = new ArrayList<>();
 
